@@ -1,17 +1,15 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Example Component</div>
+	<v-ons-page>
+		<v-ons-toolbar>
+			<div class="center">Title</div>
+		</v-ons-toolbar>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<p style="text-align: center">
+			<v-ons-button @click="$ons.notification.alert('Hello World!')">
+				Click me!
+			</v-ons-button>
+		</p>
+	</v-ons-page>
 </template>
 
 <script>
