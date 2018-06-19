@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
+axios.defaults.baseURL = 'http://localhost/api'
 
 export const store = new Vuex.Store({
   state: {
@@ -13,8 +15,33 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
-    addItem(state, payload) {
-      state.items.push(payload.item)
+    getItems(state, items) {
+      state.items = items
+    },
+    addItem(state, item) {
+      state.items.push(item)
+    },
+  },
+  actions: {
+    getItems(context) {
+      axios.get('/items')
+        .then(response => {
+          context.commit('getItems', response.data)
+        })
+        .catch(error => console.log(error))
+    },
+    addItem(context, item) {
+      axios.post('/items', {
+        user_id: 1,
+        category_id: 1,
+        date: item.date,
+        price: item.price,
+        note: "テスト投稿です。"
+      })
+        .then(response => {
+          context.commit('addItem', response.data)
+        })
+        .catch(error => console.log(error.data))
     }
   }
 })

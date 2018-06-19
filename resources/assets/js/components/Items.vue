@@ -3,7 +3,7 @@
 		<input type="number" placeholder="price" v-model="price">
 		<input type="date" v-model="date">
 		<button @click="addItem">登録</button>
-		<div v-for="item in items" :key="item.id">{{ item.price }} / {{ item.date }}</div>
+		<div v-for="item in items" :key="item.id">日付: {{ item.date }}, 値段: {{ item.price }}, メモ: {{ item.note }}</div>
 	</div>
 </template>
 
@@ -13,9 +13,11 @@ export default {
 	data () {
 		return {
 			price: '',
-			date: '',
-			idForItem: 0
+			date: ''
 		}
+	},
+	created() {
+		this.$store.dispatch('getItems')
 	},
 	computed: {
 		items() {
@@ -24,12 +26,9 @@ export default {
 	},
 	methods: {
 		addItem() {
-			this.$store.commit('addItem',{
-				item: {
-					id: this.idForItem,
-					price: this.price,
-					date: this.date,
-				}
+			this.$store.dispatch('addItem', {
+				date: this.date,
+				price: this.price,
 			})
 			this.price = ''
 			this.date = ''
