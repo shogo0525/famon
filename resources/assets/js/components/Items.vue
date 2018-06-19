@@ -14,16 +14,22 @@ export default {
 		return {
 			price: '',
 			date: '',
-			idForItem: 0,
-			items: []
+			idForItem: 0
+		}
+	},
+	computed: {
+		items() {
+			return this.$store.getters.items
 		}
 	},
 	methods: {
 		addItem() {
-			this.items.push({
-				id: this.idForItem,
-				price: this.price,
-				date: this.date,
+			this.$store.commit('addItem',{
+				item: {
+					id: this.idForItem,
+					price: this.price,
+					date: this.date,
+				}
 			})
 			this.price = ''
 			this.date = ''

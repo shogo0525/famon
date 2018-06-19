@@ -24,9 +24,12 @@ import 'onsenui/css/onsen-css-components.css'
 // JS import
 import VueOnsen from 'vue-onsenui'
 
+import { store } from './store/store'
+
 Vue.use(VueOnsen)
 
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
 })
