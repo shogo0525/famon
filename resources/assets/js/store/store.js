@@ -23,6 +23,16 @@ export const store = new Vuex.Store({
     },
   },
   actions: {
+    login(context, credentials) {
+      axios.post('/login', {
+        username: credentials.username,
+        password: credentials.password,
+      })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => console.log(error))
+    },
     getItems(context) {
       axios.get('/items')
         .then(response => {
