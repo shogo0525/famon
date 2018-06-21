@@ -28,6 +28,9 @@ export const store = new Vuex.Store({
     retrieveToken(state, token) {
       state.token = token
     },
+    destroyToken(state) {
+      state.token = null
+    },
   },
   actions: {
     login(context, credentials) {
@@ -47,6 +50,25 @@ export const store = new Vuex.Store({
             reject(error)
           })
       })
+    },
+    logout(context) {
+      if(context.getters.loggedIn) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`
+
+        return new Promise((resolve, reject) => {
+          axios.post('/logout')
+            .then(response => {
+              localStorage.removeItem('access_token')
+              context.commit('destroyToken')
+              resolve(response)
+            })
+            .catch(error => {
+              console.log(error)
+              context.commit('destroyToken')
+              reject(error)
+            })
+        })
+      }
     },
     getItems(context) {
       axios.get('/items')
