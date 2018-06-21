@@ -1,11 +1,15 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>Register</h2>
 
-    <form action="#" @submit.prevent="login">
+    <form action="#" @submit.prevent="register">
       <div>
-        <label for="email">Username/Email</label>
-        <input type="email" name="username" id="username" v-model="username">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" v-model="name">
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" v-model="email">
       </div>
       <div>
         <label for="password">Password</label>
@@ -13,7 +17,7 @@
       </div>
 
       <div>
-        <button type="submit">Login</button>
+        <button type="submit">Create Account</button>
       </div>
     </form>
   </div>
@@ -24,18 +28,20 @@ export default {
   name: 'login',
   data() {
     return {
-      username: '',
+      name: '',
+      email: '',
       password: '',
     }
   },
   methods: {
-    login() {
-      this.$store.dispatch('login', {
-        username: this.username,
+    register() {
+      this.$store.dispatch('register', {
+        name: this.name,
+        email: this.email,
         password: this.password,
       })
         .then(response => {
-          this.$router.push({name: 'home'})
+          this.$router.push({name: 'login'})
         })
     }
   }
