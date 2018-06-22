@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return Item::all();
+        return Item::where('user_id', auth()->user()->id)->get();
     }
 
     /**
@@ -25,16 +25,19 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        logger($request);
         $data = $request->validate([
-            'user_id' => 'required',
-            'category_id' => 'required',
             'date' => 'required',
             'price' => 'required',
             'note' => 'required'
         ]);
 
-        $item = Item::create($data);
+        $item = Item::create([
+            'user_id' => auth()->user()->id,
+            'category_id' => 2,
+            'date' => $request->date,
+            'price' => $request->price,
+            'note' => $request->note,
+        ]);
         return response($item, 201);
     }
 
@@ -47,6 +50,9 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+        if ($item->user_id != auth()->user()->id) {
+            return response()->json('Unauthorized', 401);
+        }
         $data = $request->validate([
             'date' => 'required',
             'price' => 'required',
@@ -64,6 +70,9 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        if ($item->user_id != auth()->user()->id) {
+            return response()->json('Unauthorized', 401);
+        }
         $item->delete();
         return response('Deleted item', 200);
     }

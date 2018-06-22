@@ -15,7 +15,10 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                  ->references('id')->on('users')
+                  ->onDelete('cascade');
             $table->integer('category_id');
             $table->date('date');
             $table->integer('price');

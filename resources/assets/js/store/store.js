@@ -31,6 +31,9 @@ export const store = new Vuex.Store({
     destroyToken(state) {
       state.token = null
     },
+    clearItems(state) {
+      state.items = []
+    },
   },
   actions: {
     register(context, data) {
@@ -86,6 +89,8 @@ export const store = new Vuex.Store({
       }
     },
     getItems(context) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`
+
       axios.get('/items')
         .then(response => {
           context.commit('getItems', response.data)
@@ -94,8 +99,6 @@ export const store = new Vuex.Store({
     },
     addItem(context, item) {
       axios.post('/items', {
-        user_id: 1,
-        category_id: 1,
         date: item.date,
         price: item.price,
         note: "テスト投稿です。"
@@ -104,6 +107,9 @@ export const store = new Vuex.Store({
           context.commit('addItem', response.data)
         })
         .catch(error => console.log(error.data))
-    }
+    },
+    clearItems(context) {
+      context.commit('clearItems')
+    },
   }
 })
