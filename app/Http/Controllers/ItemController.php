@@ -28,15 +28,16 @@ class ItemController extends Controller
         $data = $request->validate([
             'date' => 'required',
             'price' => 'required',
-            'note' => 'required'
+            'note' => 'required',
+            'category_id' => 'required',
         ]);
 
         $item = Item::create([
             'user_id' => auth()->user()->id,
-            'category_id' => 2,
             'date' => $request->date,
             'price' => $request->price,
             'note' => $request->note,
+            'category_id' => $request->category_id,
         ]);
         return response($item, 201);
     }

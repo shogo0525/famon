@@ -23,6 +23,8 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('/items/{item}', 'ItemController@update');
     Route::delete('/items/{item}', 'ItemController@destroy');
 
+    Route::get('/categories', 'CategoryController@index');
+
     Route::post('/logout', 'AuthController@logout');
 });
 

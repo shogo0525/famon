@@ -8,7 +8,8 @@ axios.defaults.baseURL = 'http://localhost/api'
 export const store = new Vuex.Store({
   state: {
     token: localStorage.getItem('access_token') || null,
-    items: []
+    items: [],
+    categories: []
   },
   getters: {
     loggedIn(state) {
@@ -16,6 +17,9 @@ export const store = new Vuex.Store({
     },
     items(state) {
       return state.items
+    },
+    categories(state) {
+      return state.categories
     }
   },
   mutations: {
@@ -33,6 +37,9 @@ export const store = new Vuex.Store({
     },
     clearItems(state) {
       state.items = []
+    },
+    getCategories(state, categories) {
+      state.categories = categories
     },
   },
   actions: {
@@ -101,15 +108,25 @@ export const store = new Vuex.Store({
       axios.post('/items', {
         date: item.date,
         price: item.price,
+        category_id: item.category_id,
         note: "テスト投稿です。"
       })
         .then(response => {
           context.commit('addItem', response.data)
         })
-        .catch(error => console.log(error.data))
+        .catch(error => console.log(error))
     },
     clearItems(context) {
       context.commit('clearItems')
+    },
+    getCategories(context) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`
+
+      axios.get('/categories')
+        .then(response => {
+          context.commit('getCategories', response.data)
+        })
+        .catch(error => console.log(error))
     },
   }
 })

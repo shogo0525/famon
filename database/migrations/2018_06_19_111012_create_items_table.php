@@ -22,7 +22,7 @@ class CreateItemsTable extends Migration
             $table->integer('category_id');
             $table->date('date');
             $table->integer('price');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

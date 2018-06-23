@@ -16145,33 +16145,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'items',
 	data: function data() {
 		return {
 			price: '',
-			date: ''
+			date: '',
+			note: '',
+			category_id: null
 		};
 	},
 	created: function created() {
 		this.$store.dispatch('getItems');
+		this.$store.dispatch('getCategories');
 	},
 
 	computed: {
 		items: function items() {
 			return this.$store.getters.items;
+		},
+		categories: function categories() {
+			return this.$store.getters.categories;
 		}
 	},
 	methods: {
 		addItem: function addItem() {
 			this.$store.dispatch('addItem', {
 				date: this.date,
-				price: this.price
+				price: this.price,
+				category_id: this.category_id
 			});
 			this.price = '';
 			this.date = '';
-			this.idForItem++;
+			this.note = '';
+			this.category_id = null;
 		}
 	}
 });
@@ -16229,7 +16245,52 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.category_id,
+              expression: "category_id"
+            }
+          ],
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.category_id = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { disabled: "", value: "" } }, [
+            _vm._v("カテゴリを選択")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.categories, function(category) {
+            return _c("option", { domProps: { value: category.id } }, [
+              _vm._v(_vm._s(category.name))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
       _c("button", { on: { click: _vm.addItem } }, [_vm._v("登録")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Items")]),
       _vm._v(" "),
       _vm._l(_vm.items, function(item) {
         return _c("div", { key: item.id }, [
@@ -16239,7 +16300,9 @@ var render = function() {
               ", 値段: " +
               _vm._s(item.price) +
               ", メモ: " +
-              _vm._s(item.note)
+              _vm._s(item.note) +
+              ", Category ID: " +
+              _vm._s(item.category_id)
           )
         ])
       })
@@ -49834,7 +49897,8 @@ __WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.baseURL = 'http://localho
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   state: {
     token: localStorage.getItem('access_token') || null,
-    items: []
+    items: [],
+    categories: []
   },
   getters: {
     loggedIn: function loggedIn(state) {
@@ -49842,6 +49906,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     },
     items: function items(state) {
       return state.items;
+    },
+    categories: function categories(state) {
+      return state.categories;
     }
   },
   mutations: {
@@ -49859,6 +49926,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     },
     clearItems: function clearItems(state) {
       state.items = [];
+    },
+    getCategories: function getCategories(state, categories) {
+      state.categories = categories;
     }
   },
   actions: {
@@ -49921,15 +49991,25 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/items', {
         date: item.date,
         price: item.price,
+        category_id: item.category_id,
         note: "テスト投稿です。"
       }).then(function (response) {
         context.commit('addItem', response.data);
       }).catch(function (error) {
-        return console.log(error.data);
+        return console.log(error);
       });
     },
     clearItems: function clearItems(context) {
       context.commit('clearItems');
+    },
+    getCategories: function getCategories(context) {
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token;
+
+      __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/categories').then(function (response) {
+        context.commit('getCategories', response.data);
+      }).catch(function (error) {
+        return console.log(error);
+      });
     }
   }
 });
