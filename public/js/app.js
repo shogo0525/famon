@@ -15479,17 +15479,21 @@ var routes = [{ path: '/', name: 'home', component: __WEBPACK_IMPORTED_MODULE_0_
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(279)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(275)
 /* template */
-var __vue_template__ = __webpack_require__(22)
+var __vue_template__ = __webpack_require__(281)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-0a937e7e"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -15522,44 +15526,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", [_vm._v("famon")]),
-    _vm._v(" "),
-    !_vm.loggedIn
-      ? _c(
-          "div",
-          [
-            _c("router-link", { attrs: { to: { name: "login" } } }, [
-              _vm._v("ログイン")
-            ]),
-            _vm._v(" "),
-            _c("router-link", { attrs: { to: { name: "register" } } }, [
-              _vm._v("ユーザー登録")
-            ])
-          ],
-          1
-        )
-      : _c("div", [_c("items")], 1)
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0a937e7e", module.exports)
-  }
-}
-
-/***/ }),
+/* 22 */,
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18022,7 +17989,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\nli {\n  margin-right: 10px;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n  max-width :800px;\n  margin: 0 auto;\n}\nh2 {\n  color: #f9d506;\n}\nli {\n  margin-right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -18309,6 +18276,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18367,7 +18336,12 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("router-view")
+      _c(
+        "b-container",
+        { staticClass: "text-center", attrs: { fluid: "" } },
+        [_c("router-view")],
+        1
+      )
     ],
     1
   )
@@ -38146,6 +38120,95 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-581c6a3c", module.exports)
+  }
+}
+
+/***/ }),
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(280);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(81)("a4d920d2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0a937e7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Home.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0a937e7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Home.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.not-auth[data-v-0a937e7e] {\na {\n    display: block;\n    margin-bottom: 10px;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h2", [_vm._v("famon")]),
+    _vm._v(" "),
+    !_vm.loggedIn
+      ? _c(
+          "div",
+          { staticClass: "not-auth" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-lg btn-block",
+                attrs: { to: { name: "login" } }
+              },
+              [_vm._v("ログイン")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-lg btn-block",
+                attrs: { to: { name: "register" } }
+              },
+              [_vm._v("ユーザー登録")]
+            )
+          ],
+          1
+        )
+      : _c("div", [_c("items")], 1)
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0a937e7e", module.exports)
   }
 }
 

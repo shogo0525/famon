@@ -6,7 +6,9 @@
       <li><button @click="logout">Logout</button></li>
     </ul>
     
-    <router-view></router-view>
+    <b-container fluid class="text-center">
+      <router-view></router-view>
+    </b-container>
   </div>
 </template>
 
@@ -31,6 +33,13 @@ export default {
 </script>
 
 <style>
+body {
+  max-width :800px;
+  margin: 0 auto; 
+}
+h2 {
+  color: #f9d506;;
+}
 li {
   margin-right: 10px;
 }
