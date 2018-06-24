@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <ul class="nav">
-      <li>Hello {{  }}</li>
+    <ul class="nav" v-if="loggedIn">
       <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-      <li v-if="!loggedIn"><router-link :to="{ name: 'login' }">Login</router-link></li>
-      <li v-if="!loggedIn"><router-link :to="{ name: 'register' }">Register</router-link></li>
-      <li v-if="loggedIn"><router-link :to="{ name: 'logout' }">Logout</router-link></li>
+      <li><router-link :to="{ name: 'add-item' }">Add Item</router-link></li>
+      <li><button @click="logout">Logout</button></li>
     </ul>
     
     <router-view></router-view>
@@ -19,6 +17,15 @@ export default {
     ...mapGetters({
 			loggedIn: 'auth/loggedIn'
 		})
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('item/clearItems')
+      this.$store.dispatch('auth/logout')
+        .then(response => {
+          this.$router.push({name: 'home'})
+        })
+    }
   }
 }
 </script>

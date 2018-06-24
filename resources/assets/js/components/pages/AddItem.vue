@@ -7,13 +7,6 @@
 			<option v-for="category in categories" :value="category.id">{{ category.name }}</option>
 		</select>
 		<button @click="addItem">登録</button>
-		
-		<hr>
-
-		<h2>Items</h2>
-		<div v-for="item in items" :key="item.id">
-			日付: {{ item.date }}, 値段: {{ item.price }}, メモ: {{ item.note }}, Category ID: {{ getCategoryById(item.category_id).name }}
-		</div>
 	</div>
 </template>
 
