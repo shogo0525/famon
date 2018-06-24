@@ -13,11 +13,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   computed: {
-    loggedIn() {
-      return this.$store.getters.loggedIn
-    }
+    ...mapGetters({
+			loggedIn: 'auth/loggedIn'
+		})
   }
 }
 </script>

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
 	name: 'items',
 	data () {
@@ -27,20 +28,18 @@ export default {
 		}
 	},
 	created() {
-		this.$store.dispatch('getItems')
-		this.$store.dispatch('getCategories')
+		this.$store.dispatch('item/getItems')
+		this.$store.dispatch('category/getCategories')
 	},
 	computed: {
-		items() {
-			return this.$store.getters.items
-		},
-		categories() {
-			return this.$store.getters.categories
-		}
+		...mapGetters({
+			items: 'item/items',
+			categories: 'category/categories'
+		})
 	},
 	methods: {
 		addItem() {
-			this.$store.dispatch('addItem', {
+			this.$store.dispatch('item/addItem', {
 				date: this.date,
 				price: this.price,
 				category_id: this.category_id

@@ -8,7 +8,7 @@ import 'onsenui/css/onsen-css-components.css'
 import VueOnsen from 'vue-onsenui'
 Vue.use(VueOnsen)
 
-import { store } from './store/store'
+import store from './store'
 
 
 const router = new VueRouter({
