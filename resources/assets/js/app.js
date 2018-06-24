@@ -3,10 +3,15 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 Vue.use(VueRouter)
 
-import 'onsenui/css/onsenui.css'
-import 'onsenui/css/onsen-css-components.css'
-import VueOnsen from 'vue-onsenui'
-Vue.use(VueOnsen)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+
+// import 'onsenui/css/onsenui.css'
+// import 'onsenui/css/onsen-css-components.css'
+// import VueOnsen from 'vue-onsenui'
+// Vue.use(VueOnsen)
 
 import store from './store'
 
