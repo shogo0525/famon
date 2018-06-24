@@ -2,7 +2,6 @@
   <div id="app">
     <ul class="nav" v-if="loggedIn">
       <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-      <li><router-link :to="{ name: 'add-item' }">Add Item</router-link></li>
       <li><button @click="logout">Logout</button></li>
     </ul>
     

@@ -18333,7 +18333,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18371,16 +18370,6 @@ var render = function() {
               [
                 _c("router-link", { attrs: { to: { name: "home" } } }, [
                   _vm._v("Home")
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              [
-                _c("router-link", { attrs: { to: { name: "add-item" } } }, [
-                  _vm._v("Add Item")
                 ])
               ],
               1
@@ -37864,6 +37853,8 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_AddItem__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_AddItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_AddItem__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -37887,10 +37878,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'items',
+	components: { AddItem: __WEBPACK_IMPORTED_MODULE_1__components_pages_AddItem___default.a },
 	data: function data() {
 		return {
 			price: '',
@@ -37953,7 +37952,23 @@ var render = function() {
             ]
           )
         })
-      )
+      ),
+      _vm._v(" "),
+      _c(
+        "b-btn",
+        {
+          directives: [
+            {
+              name: "b-modal",
+              rawName: "v-b-modal.addItem",
+              modifiers: { addItem: true }
+            }
+          ]
+        },
+        [_vm._v("+")]
+      ),
+      _vm._v(" "),
+      _c("b-modal", { attrs: { id: "addItem" } }, [_c("add-item")], 1)
     ],
     1
   )
@@ -38071,6 +38086,32 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -38116,92 +38157,113 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("input", {
-      directives: [
+  return _c(
+    "div",
+    [
+      _c(
+        "b-form",
         {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.price,
-          expression: "price"
-        }
-      ],
-      attrs: { type: "number", placeholder: "price" },
-      domProps: { value: _vm.price },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.addItem($event)
+            }
           }
-          _vm.price = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.date,
-          expression: "date"
-        }
-      ],
-      attrs: { type: "date" },
-      domProps: { value: _vm.date },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.date = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "select",
-      {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.category_id,
-            expression: "category_id"
-          }
+        },
+        [
+          _c(
+            "b-form-group",
+            { attrs: { label: "値段", "label-for": "price" } },
+            [
+              _c("b-form-input", {
+                attrs: {
+                  id: "price",
+                  type: "number",
+                  name: "price",
+                  placeholder: "値段"
+                },
+                model: {
+                  value: _vm.price,
+                  callback: function($$v) {
+                    _vm.price = $$v
+                  },
+                  expression: "price"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-form-group",
+            { attrs: { label: "日付", "label-for": "date" } },
+            [
+              _c("b-form-input", {
+                attrs: {
+                  id: "date",
+                  type: "date",
+                  name: "date",
+                  placeholder: "日付"
+                },
+                model: {
+                  value: _vm.date,
+                  callback: function($$v) {
+                    _vm.date = $$v
+                  },
+                  expression: "date"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-form-group",
+            { attrs: { label: "カテゴリ", "label-for": "category" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-3",
+                  model: {
+                    value: _vm.category_id,
+                    callback: function($$v) {
+                      _vm.category_id = $$v
+                    },
+                    expression: "category_id"
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("カテゴリを選択")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.categories, function(category) {
+                    return _c("option", { domProps: { value: category.id } }, [
+                      _vm._v(_vm._s(category.name))
+                    ])
+                  })
+                ],
+                2
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              staticClass: "btn btn-warning btn-lg btn-block",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("登録")]
+          )
         ],
-        on: {
-          change: function($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function(o) {
-                return o.selected
-              })
-              .map(function(o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.category_id = $event.target.multiple
-              ? $$selectedVal
-              : $$selectedVal[0]
-          }
-        }
-      },
-      [
-        _c("option", { attrs: { disabled: "", value: "" } }, [
-          _vm._v("カテゴリを選択")
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.categories, function(category) {
-          return _c("option", { domProps: { value: category.id } }, [
-            _vm._v(_vm._s(category.name))
-          ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.addItem } }, [_vm._v("登録")])
-  ])
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38392,12 +38454,7 @@ exports.push([module.i, "\nform {\n  margin: 20px 0;\n}\n", ""]);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('priceDelimiter', function (value) {
-  if (value === 0) {
-    return "無料";
-  } else {
-    value = value * 1.08;
-    return value.toLocaleString() + '\u5186';
-  }
+  return value.toLocaleString() + '\u5186';
 });
 
 /***/ })

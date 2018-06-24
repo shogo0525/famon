@@ -16,13 +16,21 @@
 				<small>{{ item.note }}</small>
 			</b-list-group-item>
 		</b-list-group>
+
+		<b-btn v-b-modal.addItem>+</b-btn>
+
+		<b-modal id="addItem">
+			<add-item></add-item>
+		</b-modal>
 	</div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import AddItem from '@/components/pages/AddItem'
 export default {
 	name: 'items',
+	components: { AddItem },
 	data () {
 		return {
 			price: '',
