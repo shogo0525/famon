@@ -1,21 +1,34 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>ログイン</h2>
 
-    <form action="#" @submit.prevent="login">
-      <div>
-        <label for="email">Email</label>
-        <input type="email" name="username" id="username" v-model="username">
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" v-model="password">
-      </div>
+    <b-form @submit.prevent="login">
+      <b-form-group label="メールアドレス"
+                    label-for="username">
+        <b-form-input id="username"
+                      type="email"
+                      name="username"
+                      v-model="username"
+                      placeholder="メールアドレス">
 
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
+        </b-form-input>
+      </b-form-group>
+
+      <b-form-group label="パスワード"
+                    label-for="password">
+        <b-form-input id="password"
+                      type="password"
+                      name="password"
+                      v-model="password"
+                      placeholder="password">
+
+        </b-form-input>
+      </b-form-group>
+
+      <b-button type="submit" class="btn btn-warning btn-lg btn-block">ログイン</b-button>
+    </b-form>
+    <hr>
+    <router-link :to="{ name: 'home' }" class="btn btn-secondary btn-lg btn-block">ホーム</router-link>
   </div>
 </template>
 
@@ -41,3 +54,9 @@ export default {
   }
 }
 </script>
+
+<style>
+form {
+  margin: 20px 0;
+}
+</style>
