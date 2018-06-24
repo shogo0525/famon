@@ -11,7 +11,9 @@
 		<hr>
 
 		<h2>Items</h2>
-		<div v-for="item in items" :key="item.id">日付: {{ item.date }}, 値段: {{ item.price }}, メモ: {{ item.note }}, Category ID: {{ item.category_id }}</div>
+		<div v-for="item in items" :key="item.id">
+			日付: {{ item.date }}, 値段: {{ item.price }}, メモ: {{ item.note }}, Category ID: {{ getCategoryById(item.category_id).name }}
+		</div>
 	</div>
 </template>
 
@@ -34,7 +36,8 @@ export default {
 	computed: {
 		...mapGetters({
 			items: 'item/items',
-			categories: 'category/categories'
+			categories: 'category/categories',
+			getCategoryById: 'category/getCategoryById'
 		})
 	},
 	methods: {

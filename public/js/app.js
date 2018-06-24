@@ -16156,6 +16156,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -16175,7 +16177,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
 		items: 'item/items',
-		categories: 'category/categories'
+		categories: 'category/categories',
+		getCategoryById: 'category/getCategoryById'
 	})),
 	methods: {
 		addItem: function addItem() {
@@ -16295,14 +16298,15 @@ var render = function() {
       _vm._l(_vm.items, function(item) {
         return _c("div", { key: item.id }, [
           _vm._v(
-            "日付: " +
+            "\n\t\t日付: " +
               _vm._s(item.date) +
               ", 値段: " +
               _vm._s(item.price) +
               ", メモ: " +
               _vm._s(item.note) +
               ", Category ID: " +
-              _vm._s(item.category_id)
+              _vm._s(_vm.getCategoryById(item.category_id).name) +
+              "\n\t"
           )
         ])
       })
@@ -52374,6 +52378,13 @@ var state = {
 var getters = {
   categories: function categories(state) {
     return state.categories;
+  },
+  getCategoryById: function getCategoryById(state, getters) {
+    return function (category_id) {
+      return getters.categories.find(function (category) {
+        return category.id == category_id;
+      });
+    };
   }
 };
 

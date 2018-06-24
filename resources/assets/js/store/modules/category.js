@@ -6,8 +6,11 @@ const state = {
 }
 
 const getters = {
-  categories(state) {
+  categories: state => {
     return state.categories
+  },
+  getCategoryById: (state, getters) => category_id => {
+    return getters.categories.find(category => category.id == category_id)
   }
 }
 
