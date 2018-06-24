@@ -17,10 +17,12 @@
 			</b-list-group-item>
 		</b-list-group>
 
-		<b-btn v-b-modal.addItem>+</b-btn>
+		<b-btn v-b-modal.add-item class="add-item-btn" size="lg">+</b-btn>
 
-		<b-modal id="addItem">
+		<b-modal id="add-item" ref="addItemModal" centered hide-footer hide-header>
 			<add-item></add-item>
+			<hr>
+			<b-btn class="mt-3" variant="outline-danger" block @click="hideAddItemModal">閉じる</b-btn>
 		</b-modal>
 	</div>
 </template>
@@ -49,6 +51,25 @@ export default {
 			categories: 'category/categories',
 			getCategoryById: 'category/getCategoryById'
 		})
+	},
+	methods: {
+		hideAddItemModal () {
+      this.$refs.addItemModal.hide()
+    }
 	}
 }
 </script>
+
+<style scoped>
+.add-item-btn {
+	width: 60px;
+  height: 60px;
+	background: #f9d506;
+	border-radius: 50%;
+	border: none;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 99;
+}
+</style>

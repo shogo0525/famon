@@ -38,7 +38,7 @@ body {
   margin: 0 auto; 
 }
 h2 {
-  color: #f9d506;;
+  color: #f9d506;
 }
 li {
   margin-right: 10px;
