@@ -14,6 +14,7 @@ Vue.use(BootstrapVue)
 // Vue.use(VueOnsen)
 
 import store from './store'
+import './filters'
 
 
 const router = new VueRouter({

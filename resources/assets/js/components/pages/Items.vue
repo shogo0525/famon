@@ -1,9 +1,21 @@
 <template>
 	<div>
-		<div v-for="item in items" :key="item.id">
-			<!--日付: {{ item.date }}, 値段: {{ item.price }}, メモ: {{ item.note }}, Category ID: {{ getCategoryById(item.category_id).name }}-->
-			日付: {{ item.date }}, 値段: {{ item.price }}, メモ: {{ item.note }}
-		</div>
+			<!-- Category ID: {{ getCategoryById(item.category_id).name }}-->
+
+		<b-list-group>
+			<b-list-group-item v-for="item in items" :key="item.id"
+												 href="#" class="flex-column align-items-start">
+				
+				<div class="d-flex w-100 justify-content-between">
+					<h5 class="mb-1">{{ item.price | priceDelimiter }}</h5>
+					<small>{{ item.date }}</small>
+				</div>
+				<p class="mb-1">
+						{{ item.note }}
+				</p>
+				<small>{{ item.note }}</small>
+			</b-list-group-item>
+		</b-list-group>
 	</div>
 </template>
 

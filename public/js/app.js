@@ -12574,8 +12574,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_dist_bootstrap_vue_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_dist_bootstrap_vue_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__store__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_layouts_Master__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_layouts_Master___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_layouts_Master__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__filters__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_layouts_Master__);
 
 
 
@@ -12590,6 +12591,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_boot
 // import 'onsenui/css/onsen-css-components.css'
 // import VueOnsen from 'vue-onsenui'
 // Vue.use(VueOnsen)
+
 
 
 
@@ -12625,7 +12627,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
   router: router,
   store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
-  components: { Master: __WEBPACK_IMPORTED_MODULE_7__components_layouts_Master___default.a },
+  components: { Master: __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default.a },
   template: '<Master/>'
 });
 
@@ -37873,6 +37875,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -37907,19 +37921,41 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.items, function(item) {
-      return _c("div", { key: item.id }, [
-        _vm._v(
-          "\n\t\t日付: " +
-            _vm._s(item.date) +
-            ", 値段: " +
-            _vm._s(item.price) +
-            ", メモ: " +
-            _vm._s(item.note) +
-            "\n\t"
-        )
-      ])
-    })
+    [
+      _c(
+        "b-list-group",
+        _vm._l(_vm.items, function(item) {
+          return _c(
+            "b-list-group-item",
+            {
+              key: item.id,
+              staticClass: "flex-column align-items-start",
+              attrs: { href: "#" }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "d-flex w-100 justify-content-between" },
+                [
+                  _c("h5", { staticClass: "mb-1" }, [
+                    _vm._v(_vm._s(_vm._f("priceDelimiter")(item.price)))
+                  ]),
+                  _vm._v(" "),
+                  _c("small", [_vm._v(_vm._s(item.date))])
+                ]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "mb-1" }, [
+                _vm._v("\n\t\t\t\t\t" + _vm._s(item.note) + "\n\t\t\t")
+              ]),
+              _vm._v(" "),
+              _c("small", [_vm._v(_vm._s(item.note))])
+            ]
+          )
+        })
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -38345,6 +38381,24 @@ exports.push([module.i, "\nform {\n  margin: 20px 0;\n}\n", ""]);
 
 // exports
 
+
+/***/ }),
+/* 286 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.filter('priceDelimiter', function (value) {
+  if (value === 0) {
+    return "無料";
+  } else {
+    value = value * 1.08;
+    return value.toLocaleString() + '\u5186';
+  }
+});
 
 /***/ })
 /******/ ]);
