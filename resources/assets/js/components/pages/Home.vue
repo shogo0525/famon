@@ -6,6 +6,7 @@
       <router-link :to="{ name: 'register' }" class="btn btn-secondary btn-lg btn-block">ユーザー登録</router-link>
     </div>
     <div v-else>
+      <chart></chart>
       <items></items>
     </div>
   </div>
@@ -13,10 +14,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Chart from '@/components/pages/Chart.vue'
 import Items from '@/components/pages/Items.vue'
 export default {
   name: 'home',
-  components: { Items },
+  components: { Items, Chart },
   computed: {
     ...mapGetters({
 			loggedIn: 'auth/loggedIn'
