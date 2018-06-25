@@ -40769,13 +40769,25 @@ router.beforeEach(function (to, from, next) {
   }
 });
 
+// あらかじめcategoryを読み込んでおく
+__WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].dispatch('category/getCategories');
 
-var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-  el: '#app',
-  router: router,
-  store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
-  components: { Master: __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default.a },
-  template: '<Master/>'
+
+
+// categoryが読み込まれたらmountする
+var unwatch = __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].watch(function (state) {
+  return state.category.loaded;
+}, function (loaded) {
+  if (loaded) {
+    var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+      el: '#app',
+      router: router,
+      store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
+      components: { Master: __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default.a },
+      template: '<Master/>'
+    });
+    unwatch();
+  }
 });
 
 /***/ }),
@@ -43911,13 +43923,16 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_chartjs__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_chartjs__ = __webpack_require__(226);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'chart',
-  extends: __WEBPACK_IMPORTED_MODULE_1_vue_chartjs__["a" /* Doughnut */],
+  extends: __WEBPACK_IMPORTED_MODULE_2_vue_chartjs__["a" /* Doughnut */],
   data: function data() {
     return {
       labels: [],
@@ -43928,25 +43943,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    var _this = this;
-
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + this.$store.state.auth.token;
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/items/chart').then(function (response) {
-      var charts = response.data;
-      console.log(charts);
-      charts.forEach(function (chart) {
-        _this.labels.push(chart.category_id);
-        _this.datasets[0].data.push(chart.price);
-      });
-      _this.renderChart({
-        labels: _this.labels,
-        datasets: _this.datasets
-      });
-    }).catch(function (error) {
-      return console.log(error);
-    });
+    this.getChart();
   },
-  mounted: function mounted() {}
+
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])({
+    getCategoryById: 'category/getCategoryById'
+  })),
+  methods: {
+    getChart: function getChart() {
+      var _this = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + this.$store.state.auth.token;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/items/chart').then(function (response) {
+        var charts = response.data;
+        charts.forEach(function (chart) {
+          _this.labels.push(_this.getCategoryById(chart.category_id).name);
+          _this.datasets[0].data.push(chart.price);
+        });
+        _this.renderChart({
+          labels: _this.labels,
+          datasets: _this.datasets
+        });
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -56950,7 +56972,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -56969,12 +56990,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 	},
 	created: function created() {
 		this.$store.dispatch('item/getItems');
-		this.$store.dispatch('category/getCategories');
 	},
 
 	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
 		items: 'item/items',
-		categories: 'category/categories',
 		getCategoryById: 'category/getCategoryById'
 	})),
 	methods: {
@@ -57467,6 +57486,10 @@ var render = function() {
                 [
                   _c("h5", { staticClass: "mb-1" }, [
                     _vm._v(_vm._s(_vm._f("priceDelimiter")(item.price)))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(_vm._s(_vm.getCategoryById(item.category_id).name))
                   ]),
                   _vm._v(" "),
                   _c("small", [_vm._v(_vm._s(item.date))])
@@ -70200,7 +70223,8 @@ var actions = {
 __WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.baseURL = 'http://localhost/api';
 
 var state = {
-  categories: []
+  categories: [],
+  loaded: false
 };
 
 var getters = {
@@ -70219,6 +70243,9 @@ var getters = {
 var mutations = {
   getCategories: function getCategories(state, categories) {
     state.categories = categories;
+  },
+  loaded: function loaded(state) {
+    state.loaded = true;
   }
 };
 
@@ -70228,6 +70255,7 @@ var actions = {
 
     __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/categories').then(function (response) {
       context.commit('getCategories', response.data);
+      context.commit('loaded');
     }).catch(function (error) {
       return console.log(error);
     });
@@ -70374,6 +70402,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
     loggedIn: 'auth/loggedIn'
   })),
+  beforeCreate: function beforeCreate() {
+    //this.$store.dispatch('category/getCategories')
+  },
+
   methods: {
     logout: function logout() {
       var _this = this;

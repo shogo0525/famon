@@ -40,11 +40,24 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+// あらかじめcategoryを読み込んでおく
+store.dispatch('category/getCategories')
+
 import Master from '@/components/layouts/Master'
-const app = new Vue({
-    el: '#app',
-    router,
-    store,
-    components: { Master },
-    template: '<Master/>'
-})
+
+// categoryが読み込まれたらmountする
+const unwatch = store.watch(
+  state => state.category.loaded,
+  loaded => {
+    if (loaded) {
+      const app = new Vue({
+        el: '#app',
+        router,
+        store,
+        components: { Master },
+        template: '<Master/>'
+      })
+      unwatch()
+    }
+  }
+)

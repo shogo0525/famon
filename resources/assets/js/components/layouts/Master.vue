@@ -19,6 +19,9 @@ export default {
 			loggedIn: 'auth/loggedIn'
 		})
   },
+  beforeCreate() {
+    //this.$store.dispatch('category/getCategories')
+  },
   methods: {
     logout() {
       this.$store.dispatch('item/clearItems')

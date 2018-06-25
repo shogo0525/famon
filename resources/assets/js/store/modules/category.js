@@ -2,7 +2,8 @@ import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost/api'
 
 const state = {
-  categories: []
+  categories: [],
+  loaded: false
 }
 
 const getters = {
@@ -17,6 +18,9 @@ const getters = {
 const mutations = {
   getCategories(state, categories) {
     state.categories = categories
+  },
+  loaded(state) {
+    state.loaded = true
   }
 }
 
@@ -27,6 +31,7 @@ const actions = {
     axios.get('/categories')
       .then(response => {
         context.commit('getCategories', response.data)
+        context.commit('loaded')
       })
       .catch(error => console.log(error))
   }

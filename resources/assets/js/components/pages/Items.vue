@@ -1,13 +1,12 @@
 <template>
 	<div>
-			<!-- Category ID: {{ getCategoryById(item.category_id).name }}-->
-
 		<b-list-group>
 			<b-list-group-item v-for="item in items" :key="item.id" v-b-modal.edit-item @click="editItem(item)"
 												 href="#" class="flex-column align-items-start">
 				
 				<div class="d-flex w-100 justify-content-between">
 					<h5 class="mb-1">{{ item.price | priceDelimiter }}</h5>
+					<p>{{ getCategoryById(item.category_id).name }}</p>
 					<small>{{ item.date }}</small>
 				</div>
 				<p class="mb-1">
@@ -51,12 +50,10 @@ export default {
 	},
 	created() {
 		this.$store.dispatch('item/getItems')
-		this.$store.dispatch('category/getCategories')
-	},
+  },
 	computed: {
 		...mapGetters({
 			items: 'item/items',
-			categories: 'category/categories',
 			getCategoryById: 'category/getCategoryById'
 		})
 	},
