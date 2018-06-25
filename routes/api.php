@@ -22,6 +22,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/items', 'ItemController@store');
     Route::patch('/items/{item}', 'ItemController@update');
     Route::delete('/items/{item}', 'ItemController@destroy');
+    Route::get('/items/chart', 'ItemController@chart');
 
     Route::get('/categories', 'CategoryController@index');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -60,10 +61,6 @@ class ItemController extends Controller
             'note' => 'nullable'
         ]);
 
-        logger($request);
-        logger($item);
-        logger($data);
-
         $item->update($data);
         return response($item, 200);
     }
@@ -81,5 +78,20 @@ class ItemController extends Controller
         }
         $item->delete();
         return response('Deleted item', 200);
+    }
+
+    public function chart()
+    {
+        return Item::where('user_id', auth()->user()->id)
+                    ->select(DB::raw('sum(price) as price, category_id'))
+                    ->groupBy('category_id')
+                    ->get();
+                    
+        // 他の書き方（参考に）
+        // $items = DB::table('items')
+        //             ->select(DB::raw('sum(price) as item_price, category_id'))
+        //             ->where('user_id', auth()->user()->id)
+        //             ->groupBy('category_id')
+        //             ->get();
     }
 }
