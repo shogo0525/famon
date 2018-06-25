@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b-form @submit.prevent="addItem">
+		<b-form @submit.prevent="editItem">
       <b-form-group label="値段"
                     label-for="price">
         <b-form-input id="price"
@@ -31,7 +31,7 @@
 				</b-form-select>
 			</b-form-group>
 
-      <b-button type="submit" class="btn btn-warning btn-lg btn-block">登録</b-button>
+      <b-button type="submit" class="btn btn-warning btn-lg btn-block">更新</b-button>
     </b-form>
 	</div>
 </template>
@@ -39,29 +39,16 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-	name: 'add-item',
-	data () {
-		return {
-			item: {
-				price: '',
-				date: '',
-				note: '',
-				category_id: null
-			}
-		}
-	},
+	name: 'edit-item',
+	props: ["item"],
 	computed: {
 		...mapGetters({
 			categories: 'category/categories'
 		})
 	},
 	methods: {
-		addItem() {
-			this.$store.dispatch('item/addItem', this.item)
-			this.item.price = ''
-			this.item.date = ''
-			this.item.note = ''
-			this.item.category_id = null
+		editItem() {
+			this.$store.dispatch('item/editItem', this.item)
 		}
 	}
 }

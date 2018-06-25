@@ -3,7 +3,7 @@
 			<!-- Category ID: {{ getCategoryById(item.category_id).name }}-->
 
 		<b-list-group>
-			<b-list-group-item v-for="item in items" :key="item.id"
+			<b-list-group-item v-for="item in items" :key="item.id" v-b-modal.edit-item @click="editItem(item)"
 												 href="#" class="flex-column align-items-start">
 				
 				<div class="d-flex w-100 justify-content-between">
@@ -17,8 +17,14 @@
 			</b-list-group-item>
 		</b-list-group>
 
-		<b-btn v-b-modal.add-item class="add-item-btn" size="lg">+</b-btn>
+		<b-modal id="edit-item" ref="editItemModal" centered hide-footer hide-header>
+			<edit-item :item="editData"></edit-item>
+			<hr>
+			<b-btn class="mt-3" variant="outline-danger" block @click="hideEditItemModal">閉じる</b-btn>
+		</b-modal>
 
+		<!-- Add Item -->
+		<b-btn v-b-modal.add-item class="add-item-btn" size="lg">+</b-btn>
 		<b-modal id="add-item" ref="addItemModal" centered hide-footer hide-header>
 			<add-item></add-item>
 			<hr>
@@ -30,15 +36,17 @@
 <script>
 import { mapGetters } from 'vuex'
 import AddItem from '@/components/pages/AddItem'
+import EditItem from '@/components/pages/EditItem'
 export default {
 	name: 'items',
-	components: { AddItem },
+	components: { AddItem, EditItem },
 	data () {
 		return {
 			price: '',
 			date: '',
 			note: '',
-			category_id: null
+			category_id: null,
+			editData: {}
 		}
 	},
 	created() {
@@ -53,9 +61,15 @@ export default {
 		})
 	},
 	methods: {
-		hideAddItemModal () {
+		hideAddItemModal() {
       this.$refs.addItemModal.hide()
-    }
+    },
+		hideEditItemModal() {
+      this.$refs.editItemModal.hide()
+    },
+		editItem(item) {
+			this.editData = item
+		}
 	}
 }
 </script>

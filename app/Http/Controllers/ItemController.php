@@ -55,9 +55,14 @@ class ItemController extends Controller
             return response()->json('Unauthorized', 401);
         }
         $data = $request->validate([
-            'date' => 'required',
+            'date' => 'required|date',
             'price' => 'required',
+            'note' => 'nullable'
         ]);
+
+        logger($request);
+        logger($item);
+        logger($data);
 
         $item->update($data);
         return response($item, 200);

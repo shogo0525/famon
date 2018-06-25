@@ -18,6 +18,15 @@ const mutations = {
   addItem(state, item) {
     state.items.push(item)
   },
+  editItem(state, item) {
+    const index = state.items.findIndex(data => data.id == item.id)
+    state.items.splice(index, 1, {
+      'date': item.date,
+      'price': item.price,
+      'note': item.note,
+      'category_id': item.category_id,
+    })
+  },
   clearItems(state) {
     state.items = []
   }
@@ -42,6 +51,18 @@ const actions = {
     })
       .then(response => {
         context.commit('addItem', response.data)
+      })
+      .catch(error => console.log(error))
+  },
+  editItem(context, item) {
+    axios.patch('/items/' + item.id, {
+      date: item.date,
+      price: item.price,
+      category_id: item.category_id,
+      note: "テスト投稿です。（編集）"
+    })
+      .then(response => {
+        context.commit('editItem', response.data)
       })
       .catch(error => console.log(error))
   },
