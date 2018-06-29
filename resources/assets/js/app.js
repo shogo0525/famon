@@ -8,11 +8,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
-// import 'onsenui/css/onsenui.css'
-// import 'onsenui/css/onsen-css-components.css'
-// import VueOnsen from 'vue-onsenui'
-// Vue.use(VueOnsen)
-
 import store from './store'
 import './filters'
 
