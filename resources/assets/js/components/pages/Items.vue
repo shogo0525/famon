@@ -73,14 +73,16 @@ export default {
 
 <style scoped>
 .add-item-btn {
+	opacity: 0.8;
 	width: 60px;
-  height: 60px;
+	height: 60px;
 	background: #f9d506;
 	border-radius: 50%;
 	border: none;
 	position: fixed;
 	bottom: 20px;
-	right: 20px;
+	left: calc(50% - 30px);
+	margin: 0 auto;
 	z-index: 99;
 }
 </style>
