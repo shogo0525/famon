@@ -50,12 +50,23 @@ export default {
 			}
 		}
 	},
+	created() {
+		this.setToday()
+	},
 	computed: {
 		...mapGetters({
 			categories: 'category/categories'
 		})
 	},
 	methods: {
+		setToday() {
+			const today = new Date()
+			today.setDate(today.getDate())
+			const year = today.getFullYear()
+			const month = ("0" + (today.getMonth() + 1)).slice(-2)
+			const day = ("0" + today.getDate()).slice(-2)
+			this.item.date = `${year}-${month}-${day}`
+		},
 		addItem() {
 			this.$store.dispatch('item/addItem', this.item)
 			this.item.price = ''
