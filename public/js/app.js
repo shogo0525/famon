@@ -40746,7 +40746,7 @@ router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.requiresAuth;
   })) {
-    if (!__WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].getters.loggedIn) {
+    if (!__WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].getters['auth/loggedIn']) {
       next({ name: 'login' });
     } else {
       next();
@@ -40754,7 +40754,7 @@ router.beforeEach(function (to, from, next) {
   } else if (to.matched.some(function (record) {
     return record.meta.requiresVisitor;
   })) {
-    if (__WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].getters.loggedIn) {
+    if (__WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].getters['auth/loggedIn']) {
       next({ name: 'home' });
     } else {
       next();
@@ -40764,26 +40764,45 @@ router.beforeEach(function (to, from, next) {
   }
 });
 
-// あらかじめcategoryを読み込んでおく
-__WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].dispatch('category/getCategories');
 
-
-
-// categoryが読み込まれたらmountする
-var unwatch = __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].watch(function (state) {
-  return state.category.loaded;
-}, function (loaded) {
-  if (loaded) {
-    var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-      el: '#app',
-      router: router,
-      store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
-      components: { Master: __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default.a },
-      template: '<Master/>'
-    });
-    unwatch();
-  }
+var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+  router: router,
+  store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
+  components: { Master: __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default.a },
+  template: '<Master/>'
 });
+
+if (__WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].getters['auth/loggedIn']) {
+  __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].dispatch('category/getCategories');
+  var unwatch_category = __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].watch(function (state) {
+    return state.category.loaded;
+  }, function (loaded) {
+    if (loaded) {
+      app.$mount('#app');
+      unwatch_category();
+    }
+  });
+} else {
+  app.$mount('#app');
+  var unwatch_auth = __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].watch(function (state) {
+    return state.auth.token;
+  }, function (token) {
+    if (token) {
+      //app.$destroy('#app')
+      __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].dispatch('category/getCategories');
+      console.log("store.dispatch('category/getCategories')");
+      var _unwatch_category = __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].watch(function (state) {
+        return state.category.loaded;
+      }, function (loaded) {
+        if (loaded) {
+          // app.$mount('#app')
+          unwatch_auth();
+          _unwatch_category();
+        }
+      });
+    }
+  });
+}
 
 /***/ }),
 /* 215 */
@@ -57797,7 +57816,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.add-item-btn[data-v-61dcb2ce] {\n\twidth: 60px;\n  height: 60px;\n\tbackground: #f9d506;\n\tborder-radius: 50%;\n\tborder: none;\n\tposition: fixed;\n\tbottom: 20px;\n\tright: 20px;\n\tz-index: 99;\n}\n", ""]);
+exports.push([module.i, "\n.add-item-btn[data-v-61dcb2ce] {\n\topacity: 0.8;\n\twidth: 60px;\n\theight: 60px;\n\tbackground: #f9d506;\n\tborder-radius: 50%;\n\tborder: none;\n\tposition: fixed;\n\tbottom: 20px;\n\tleft: calc(50% - 30px);\n\tmargin: 0 auto;\n\tz-index: 99;\n}\n", ""]);
 
 // exports
 
@@ -57947,11 +57966,22 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			}
 		};
 	},
+	created: function created() {
+		this.setToday();
+	},
 
 	computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
 		categories: 'category/categories'
 	})),
 	methods: {
+		setToday: function setToday() {
+			var today = new Date();
+			today.setDate(today.getDate());
+			var year = today.getFullYear();
+			var month = ("0" + (today.getMonth() + 1)).slice(-2);
+			var day = ("0" + today.getDate()).slice(-2);
+			this.item.date = year + '-' + month + '-' + day;
+		},
 		addItem: function addItem() {
 			this.$store.dispatch('item/addItem', this.item);
 			this.item.price = '';

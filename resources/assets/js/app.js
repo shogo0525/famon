@@ -19,13 +19,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters.loggedIn) {
+    if (!store.getters['auth/loggedIn']) {
       next({ name: 'login' })
     } else {
       next()
     }
   } else if (to.matched.some(record => record.meta.requiresVisitor)) {
-    if (store.getters.loggedIn) {
+    if (store.getters['auth/loggedIn']) {
       next({ name: 'home' })
     } else {
       next()
@@ -35,24 +35,47 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-// あらかじめcategoryを読み込んでおく
-store.dispatch('category/getCategories')
+
 
 import Master from '@/components/layouts/Master'
+const app = new Vue({
+  router,
+  store,
+  components: { Master },
+  template: '<Master/>'
+})
 
-// categoryが読み込まれたらmountする
-const unwatch = store.watch(
-  state => state.category.loaded,
-  loaded => {
-    if (loaded) {
-      const app = new Vue({
-        el: '#app',
-        router,
-        store,
-        components: { Master },
-        template: '<Master/>'
-      })
-      unwatch()
+if (store.getters['auth/loggedIn']) {
+  store.dispatch('category/getCategories')
+  const unwatch_category = store.watch(
+    state => state.category.loaded,
+    loaded => {
+      if (loaded) {
+        app.$mount('#app')
+        unwatch_category()
+      }
     }
-  }
-)
+  )
+} else {
+  app.$mount('#app')
+  const unwatch_auth = store.watch(
+    state => state.auth.token,
+    token => {
+      if (token) {
+        //app.$destroy('#app')
+        store.dispatch('category/getCategories')
+        console.log("store.dispatch('category/getCategories')")
+        const unwatch_category = store.watch(
+          state => state.category.loaded,
+          loaded => {
+            if (loaded) {
+             // app.$mount('#app')
+              unwatch_auth()
+              unwatch_category()
+            }
+          }
+        )
+      }
+    }
+  )
+}
