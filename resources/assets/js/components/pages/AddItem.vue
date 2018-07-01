@@ -38,8 +38,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import AddCategory from '@/components/pages/AddCategory'
 export default {
 	name: 'add-item',
+	components: { AddCategory },
 	data () {
 		return {
 			item: {

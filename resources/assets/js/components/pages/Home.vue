@@ -1,12 +1,10 @@
 <template>
   <div>
-    <h2>famon</h2>
     <div v-if="!loggedIn" class="not-auth">
       <router-link :to="{ name: 'login' }" class="btn btn-secondary btn-lg btn-block">ログイン</router-link>
       <router-link :to="{ name: 'register' }" class="btn btn-secondary btn-lg btn-block">ユーザー登録</router-link>
     </div>
     <div v-else>
-      <chart></chart>
       <items></items>
     </div>
   </div>
@@ -14,11 +12,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Chart from '@/components/pages/Chart.vue'
 import Items from '@/components/pages/Items.vue'
 export default {
   name: 'home',
-  components: { Items, Chart },
+  components: { Items },
   computed: {
     ...mapGetters({
 			loggedIn: 'auth/loggedIn'

@@ -16,6 +16,7 @@
 			</b-list-group-item>
 		</b-list-group>
 
+		<!-- Edit Item -->
 		<b-modal id="edit-item" ref="editItemModal" centered hide-footer hide-header>
 			<edit-item :item="editData"></edit-item>
 			<hr>
