@@ -1,5 +1,4 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost/api'
 
 const state = {
   token: localStorage.getItem('access_token') || null

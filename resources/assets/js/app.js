@@ -11,6 +11,13 @@ Vue.use(BootstrapVue)
 import store from './store'
 import './filters'
 
+import axios from 'axios'
+if (process.env.NODE_ENV === 'production') {
+  axios.defaults.baseURL = 'https://famon.herokuapp.com//api'
+} else {
+  axios.defaults.baseURL = 'http://localhost/api'
+}
+
 
 const router = new VueRouter({
     mode: 'history',
@@ -34,7 +41,6 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
 
 
 import Master from '@/components/layouts/Master'

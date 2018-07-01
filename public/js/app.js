@@ -40722,8 +40722,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue__ = __webpack_require__(321);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__store__ = __webpack_require__(434);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__filters__ = __webpack_require__(438);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master__ = __webpack_require__(439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_layouts_Master__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_axios__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_layouts_Master__ = __webpack_require__(439);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_layouts_Master___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_layouts_Master__);
 
 
 
@@ -40736,6 +40738,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_boot
 
 
 
+
+
+if (false) {
+  axios.defaults.baseURL = 'https://famon.herokuapp.com//api';
+} else {
+  __WEBPACK_IMPORTED_MODULE_8_axios___default.a.defaults.baseURL = 'http://localhost/api';
+}
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   mode: 'history',
@@ -40768,7 +40777,7 @@ router.beforeEach(function (to, from, next) {
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   router: router,
   store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
-  components: { Master: __WEBPACK_IMPORTED_MODULE_8__components_layouts_Master___default.a },
+  components: { Master: __WEBPACK_IMPORTED_MODULE_9__components_layouts_Master___default.a },
   template: '<Master/>'
 });
 
@@ -70038,7 +70047,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
-__WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.baseURL = 'http://localhost/api';
 
 var state = {
   token: localStorage.getItem('access_token') || null
@@ -70124,7 +70132,6 @@ var actions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
-__WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.baseURL = 'http://localhost/api';
 
 var state = {
   items: []
@@ -70218,7 +70225,6 @@ var actions = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
-__WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.baseURL = 'http://localhost/api';
 
 var state = {
   categories: [],
