@@ -51,10 +51,11 @@ li {
   margin-right: 10px;
 }
 footer {
-  background: #f9d506;
-  position: fixed;
   width: 100%;
   height: 60px;
+  border: 1px solid #f9d506;
+  background: white;
+  position: fixed;
   bottom: 0;
   display: flex;
 
@@ -63,7 +64,8 @@ footer {
     width: 33.3%;
     text-align: center;
     border: 1px solid white;
-    color: white;
+    border: 1px solid #f9d506;
+    color: #f9d506;
     line-height: 60px;
     &:link, &:visited, &:hover, &:active {
       text-decoration: none;
@@ -71,7 +73,7 @@ footer {
   }
 
   .router-link-active {
-    border: 2px solid white;
+    border: 3px solid #f9d506;
   }
 }
 </style>
