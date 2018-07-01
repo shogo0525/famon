@@ -26,7 +26,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'date' => 'required',
             'price' => 'required',
             'note' => 'required',

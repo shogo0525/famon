@@ -43,6 +43,8 @@ const actions = {
       .catch(error => console.log(error))
   },
   addItem(context, item) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${context.rootState.auth.token}`
+
     axios.post('/items', {
       date: item.date,
       price: item.price,
@@ -55,6 +57,8 @@ const actions = {
       .catch(error => console.log(error))
   },
   editItem(context, item) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${context.rootState.auth.token}`
+    
     axios.patch('/items/' + item.id, {
       date: item.date,
       price: item.price,

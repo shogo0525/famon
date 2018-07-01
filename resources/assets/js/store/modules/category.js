@@ -21,7 +21,10 @@ const mutations = {
   },
   loaded(state) {
     state.loaded = true
-  }
+  },
+  addCategory(state, category) {
+    state.categories.push(category)
+  },
 }
 
 const actions = {
@@ -34,7 +37,18 @@ const actions = {
         context.commit('loaded')
       })
       .catch(error => console.log(error))
-  }
+  },
+  addCategory(context, category) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${context.rootState.auth.token}`
+    
+    axios.post('/categories', {
+      name: category.name,
+    })
+      .then(response => {
+        context.commit('addCategory', response.data)
+      })
+      .catch(error => console.log(error))
+  },
 }
 
 export default {

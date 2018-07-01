@@ -25,6 +25,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/items/chart', 'ItemController@chart');
 
     Route::get('/categories', 'CategoryController@index');
+    Route::post('/categories', 'CategoryController@store');
 
     Route::post('/logout', 'AuthController@logout');
 });
