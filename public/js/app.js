@@ -43823,7 +43823,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43868,8 +43868,10 @@ module.exports = function listToStyles (parentId, list) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_Items_vue__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_Items_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_Items_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_Login_vue__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_pages_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_pages_Login_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_Items_vue__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pages_Items_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pages_Items_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -43884,12 +43886,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
-  components: { Items: __WEBPACK_IMPORTED_MODULE_1__components_pages_Items_vue___default.a },
+  components: { Items: __WEBPACK_IMPORTED_MODULE_2__components_pages_Items_vue___default.a, Login: __WEBPACK_IMPORTED_MODULE_1__components_pages_Login_vue___default.a },
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
     loggedIn: 'auth/loggedIn'
   }))
@@ -58563,14 +58567,9 @@ var render = function() {
           "div",
           { staticClass: "not-auth" },
           [
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-secondary btn-lg btn-block",
-                attrs: { to: { name: "login" } }
-              },
-              [_vm._v("ログイン")]
-            ),
+            _c("login"),
+            _vm._v(" "),
+            _c("hr"),
             _vm._v(" "),
             _c(
               "router-link",
@@ -58682,7 +58681,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\nform {\n  margin: 20px 0;\n}\n", ""]);
+exports.push([module.i, "\n.logo {\n  width: 60%;\n  margin-bottom: 50px;\n}\nform {\n  margin: 20px 0;\n}\n", ""]);
 
 // exports
 
@@ -58693,9 +58692,6 @@ exports.push([module.i, "\nform {\n  margin: 20px 0;\n}\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -58762,7 +58758,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h2", [_vm._v("ログイン")]),
+      _c("img", { staticClass: "logo", attrs: { src: "/images/logo.png" } }),
       _vm._v(" "),
       _c(
         "b-form",
@@ -58831,17 +58827,6 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "btn btn-secondary btn-lg btn-block",
-          attrs: { to: { name: "home" } }
-        },
-        [_vm._v("ホーム")]
       )
     ],
     1

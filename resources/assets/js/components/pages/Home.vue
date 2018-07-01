@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-if="!loggedIn" class="not-auth">
-      <router-link :to="{ name: 'login' }" class="btn btn-secondary btn-lg btn-block">ログイン</router-link>
+      <login></login>
+      <hr>
       <router-link :to="{ name: 'register' }" class="btn btn-secondary btn-lg btn-block">ユーザー登録</router-link>
     </div>
     <div v-else>
@@ -12,10 +13,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Login from '@/components/pages/Login.vue'
 import Items from '@/components/pages/Items.vue'
 export default {
   name: 'home',
-  components: { Items },
+  components: { Items, Login },
   computed: {
     ...mapGetters({
 			loggedIn: 'auth/loggedIn'

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h2>ログイン</h2>
-
+    <img class="logo" :src="'/images/logo.png'">
     <b-form @submit.prevent="login">
       <b-form-group label="メールアドレス"
                     label-for="username">
@@ -27,8 +26,6 @@
 
       <b-button type="submit" class="btn btn-warning btn-lg btn-block">ログイン</b-button>
     </b-form>
-    <hr>
-    <router-link :to="{ name: 'home' }" class="btn btn-secondary btn-lg btn-block">ホーム</router-link>
   </div>
 </template>
 
@@ -56,6 +53,10 @@ export default {
 </script>
 
 <style>
+.logo {
+  width: 60%;
+  margin-bottom: 50px;
+}
 form {
   margin: 20px 0;
 }
