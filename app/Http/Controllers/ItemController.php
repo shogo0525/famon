@@ -27,9 +27,9 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date' => 'required',
+            'date' => 'required|date',
             'price' => 'required',
-            'note' => 'required',
+            'note' => 'nullable',
             'category_id' => 'required',
         ]);
 
@@ -58,7 +58,8 @@ class ItemController extends Controller
         $data = $request->validate([
             'date' => 'required|date',
             'price' => 'required',
-            'note' => 'nullable'
+            'note' => 'nullable',
+            'category_id' => 'required',
         ]);
 
         $item->update($data);

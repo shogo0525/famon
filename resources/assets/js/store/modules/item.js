@@ -19,12 +19,7 @@ const mutations = {
   },
   editItem(state, item) {
     const index = state.items.findIndex(data => data.id == item.id)
-    state.items.splice(index, 1, {
-      'date': item.date,
-      'price': item.price,
-      'note': item.note,
-      'category_id': item.category_id,
-    })
+    state.items.splice(index, 1, item)
   },
   clearItems(state) {
     state.items = []
@@ -48,7 +43,7 @@ const actions = {
       date: item.date,
       price: item.price,
       category_id: item.category_id,
-      note: "テスト投稿です。"
+      note: item.note
     })
       .then(response => {
         context.commit('addItem', response.data)
@@ -62,7 +57,7 @@ const actions = {
       date: item.date,
       price: item.price,
       category_id: item.category_id,
-      note: "テスト投稿です。（編集）"
+      note: item.note
     })
       .then(response => {
         context.commit('editItem', response.data)

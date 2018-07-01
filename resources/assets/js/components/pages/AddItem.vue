@@ -8,7 +8,6 @@
                       name="price"
                       v-model="item.price"
                       placeholder="値段">
-
         </b-form-input>
       </b-form-group>
 
@@ -19,7 +18,6 @@
                       name="date"
                       v-model="item.date"
                       placeholder="日付">
-
         </b-form-input>
       </b-form-group>
 
@@ -30,6 +28,17 @@
 					<option v-for="category in categories" :value="category.id">{{ category.name }}</option>
 				</b-form-select>
 			</b-form-group>
+
+      <b-form-group label="メモ"
+                    label-for="note">
+        <b-form-textarea id="note"
+                      	 name="note"
+												 :rows="2"
+												 :max-rows="2"
+												 v-model="item.note"
+												 placeholder="メモ">
+        </b-form-textarea>
+      </b-form-group>
 
       <b-button type="submit" class="btn btn-warning btn-lg btn-block">登録</b-button>
     </b-form>

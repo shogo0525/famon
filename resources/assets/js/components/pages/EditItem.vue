@@ -31,6 +31,17 @@
 				</b-form-select>
 			</b-form-group>
 
+      <b-form-group label="メモ"
+                    label-for="note">
+        <b-form-textarea id="note"
+                      	 name="note"
+												 :rows="2"
+												 :max-rows="2"
+												 v-model="item.note"
+												 placeholder="メモ">
+        </b-form-textarea>
+      </b-form-group>
+
       <b-button type="submit" class="btn btn-warning btn-lg btn-block">更新</b-button>
     </b-form>
 	</div>
@@ -48,6 +59,7 @@ export default {
 	},
 	methods: {
 		editItem() {
+			console.log(this.item)
 			this.$store.dispatch('item/editItem', this.item)
 		}
 	}
