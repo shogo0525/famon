@@ -40741,7 +40741,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_boot
 
 
 if (false) {
-  axios.defaults.baseURL = 'https://famon.herokuapp.com//api';
+  axios.defaults.baseURL = 'https://famon.herokuapp.com/api';
 } else {
   __WEBPACK_IMPORTED_MODULE_8_axios___default.a.defaults.baseURL = 'http://localhost/api';
 }

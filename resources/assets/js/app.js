@@ -13,7 +13,7 @@ import './filters'
 
 import axios from 'axios'
 if (process.env.NODE_ENV === 'production') {
-  axios.defaults.baseURL = 'https://famon.herokuapp.com//api'
+  axios.defaults.baseURL = 'https://famon.herokuapp.com/api'
 } else {
   axios.defaults.baseURL = 'http://localhost/api'
 }
