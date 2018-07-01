@@ -1,7 +1,8 @@
 <template>
 	<div>
+		<h4>カテゴリを新規追加する</h4>
 		<b-form @submit.prevent="addCategory">
-      <b-form-group label="カテゴリ名"
+      <b-form-group label=""
                     label-for="name">
         <b-form-input id="name"
                       type="text"

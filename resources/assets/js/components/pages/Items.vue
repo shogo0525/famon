@@ -81,7 +81,7 @@ export default {
 	border-radius: 50%;
 	border: none;
 	position: fixed;
-	bottom: 20px;
+	bottom: 60px;
 	left: calc(50% - 30px);
 	margin: 0 auto;
 	z-index: 99;

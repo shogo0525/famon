@@ -1,12 +1,16 @@
 <template>
   <div>
-    <button @click="logout" class="btn btn-warning btn-lg btn-block">Logout</button>
+    <add-category></add-category>
+    <hr>
+    <button @click="logout" class="btn btn-danger btn-lg btn-block">ログアウト</button>
   </div>
 </template>
 
 <script>
+import AddCategory from '@/components/pages/AddCategory.vue'
 export default {
   name: 'setting',
+  components: { AddCategory },
   methods: {
     logout() {
       this.$store.dispatch('item/clearItems')

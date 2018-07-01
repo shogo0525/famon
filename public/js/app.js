@@ -57791,7 +57791,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n.add-item-btn[data-v-61dcb2ce] {\n\topacity: 0.8;\n\twidth: 60px;\n\theight: 60px;\n\tbackground: #f9d506;\n\tborder-radius: 50%;\n\tborder: none;\n\tposition: fixed;\n\tbottom: 20px;\n\tleft: calc(50% - 30px);\n\tmargin: 0 auto;\n\tz-index: 99;\n}\n", ""]);
+exports.push([module.i, "\n.add-item-btn[data-v-61dcb2ce] {\n\topacity: 0.8;\n\twidth: 60px;\n\theight: 60px;\n\tbackground: #f9d506;\n\tborder-radius: 50%;\n\tborder: none;\n\tposition: fixed;\n\tbottom: 60px;\n\tleft: calc(50% - 30px);\n\tmargin: 0 auto;\n\tz-index: 99;\n}\n", ""]);
 
 // exports
 
@@ -70445,7 +70445,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -70543,6 +70542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'add-category',
@@ -70573,6 +70573,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("h4", [_vm._v("カテゴリを新規追加する")]),
+      _vm._v(" "),
       _c(
         "b-form",
         {
@@ -70586,7 +70588,7 @@ var render = function() {
         [
           _c(
             "b-form-group",
-            { attrs: { label: "カテゴリ名", "label-for": "name" } },
+            { attrs: { label: "", "label-for": "name" } },
             [
               _c("b-form-input", {
                 attrs: {
@@ -70841,7 +70843,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70852,6 +70854,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_AddCategory_vue__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_pages_AddCategory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_pages_AddCategory_vue__);
+//
+//
 //
 //
 //
@@ -70859,8 +70865,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'setting',
+  components: { AddCategory: __WEBPACK_IMPORTED_MODULE_0__components_pages_AddCategory_vue___default.a },
   methods: {
     logout: function logout() {
       var _this = this;
@@ -70881,16 +70889,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-warning btn-lg btn-block",
-        on: { click: _vm.logout }
-      },
-      [_vm._v("Logout")]
-    )
-  ])
+  return _c(
+    "div",
+    [
+      _c("add-category"),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-lg btn-block",
+          on: { click: _vm.logout }
+        },
+        [_vm._v("ログアウト")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -70937,7 +70953,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\nbody[data-v-4c9db69f] {\n  max-width: 800px;\n  margin: 0 auto;\n}\nmain[data-v-4c9db69f] {\n  padding-bottom: 60px;\n}\nh2[data-v-4c9db69f] {\n  color: #f9d506;\n}\nli[data-v-4c9db69f] {\n  margin-right: 10px;\n}\nfooter[data-v-4c9db69f] {\n  background: #f9d506;\n  position: fixed;\n  width: 100%;\n  height: 60px;\n  bottom: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\nfooter a[data-v-4c9db69f] {\n    height: 100%;\n    width: 25%;\n    text-align: center;\n    border: 1px solid white;\n    color: white;\n    line-height: 60px;\n}\nfooter a[data-v-4c9db69f]:link, footer a[data-v-4c9db69f]:visited, footer a[data-v-4c9db69f]:hover, footer a[data-v-4c9db69f]:active {\n      text-decoration: none;\n}\nfooter .router-link-active[data-v-4c9db69f] {\n    border: 2px solid white;\n}\n", ""]);
+exports.push([module.i, "\nbody[data-v-4c9db69f] {\n  max-width: 800px;\n  margin: 0 auto;\n}\nmain[data-v-4c9db69f] {\n  padding: 25px 0 60px;\n}\nh2[data-v-4c9db69f] {\n  color: #f9d506;\n}\nli[data-v-4c9db69f] {\n  margin-right: 10px;\n}\nfooter[data-v-4c9db69f] {\n  background: #f9d506;\n  position: fixed;\n  width: 100%;\n  height: 60px;\n  bottom: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\nfooter a[data-v-4c9db69f] {\n    height: 100%;\n    width: 33.3%;\n    text-align: center;\n    border: 1px solid white;\n    color: white;\n    line-height: 60px;\n}\nfooter a[data-v-4c9db69f]:link, footer a[data-v-4c9db69f]:visited, footer a[data-v-4c9db69f]:hover, footer a[data-v-4c9db69f]:active {\n      text-decoration: none;\n}\nfooter .router-link-active[data-v-4c9db69f] {\n    border: 2px solid white;\n}\n", ""]);
 
 // exports
 
@@ -70975,12 +70991,6 @@ var render = function() {
             _c("router-link", { attrs: { to: { name: "chart" }, exact: "" } }, [
               _vm._v("集計")
             ]),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { attrs: { to: { name: "add-category" }, exact: "" } },
-              [_vm._v("カテゴリの追加")]
-            ),
             _vm._v(" "),
             _c(
               "router-link",

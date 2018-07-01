@@ -10,7 +10,6 @@
     <footer v-if="loggedIn">
       <router-link :to="{ name: 'home' }" exact>ホーム</router-link>
       <router-link :to="{ name: 'chart' }" exact>集計</router-link>
-      <router-link :to="{ name: 'add-category' }" exact>カテゴリの追加</router-link>
       <router-link :to="{ name: 'setting' }" exact>設定</router-link>
     </footer>
 
@@ -43,7 +42,7 @@ body {
   margin: 0 auto; 
 }
 main {
-  padding-bottom: 60px;
+  padding: 25px 0 60px;
 }
 h2 {
   color: #f9d506;
@@ -61,7 +60,7 @@ footer {
 
   a {
     height: 100%;
-    width: 25%;
+    width: 33.3%;
     text-align: center;
     border: 1px solid white;
     color: white;
