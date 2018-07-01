@@ -70970,7 +70970,7 @@ var render = function() {
           "footer",
           [
             _c("router-link", { attrs: { to: { name: "home" }, exact: "" } }, [
-              _vm._v("ホーム")
+              _vm._v("記録")
             ]),
             _vm._v(" "),
             _c("router-link", { attrs: { to: { name: "chart" }, exact: "" } }, [

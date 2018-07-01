@@ -8,7 +8,7 @@
     </main>
 
     <footer v-if="loggedIn">
-      <router-link :to="{ name: 'home' }" exact>ホーム</router-link>
+      <router-link :to="{ name: 'home' }" exact>記録</router-link>
       <router-link :to="{ name: 'chart' }" exact>集計</router-link>
       <router-link :to="{ name: 'setting' }" exact>設定</router-link>
     </footer>
