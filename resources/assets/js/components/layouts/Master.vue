@@ -36,24 +36,19 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 body {
   max-width :800px;
   margin: 0 auto; 
 }
 main {
-  padding: 25px 0 60px;
-}
-h2 {
-  color: #f9d506;
-}
-li {
-  margin-right: 10px;
+  padding: 25px 0 70px;
 }
 footer {
+  max-width: 800px;
   width: 100%;
   height: 60px;
-  border: 1px solid #f9d506;
+  padding: 0 5px;
   background: white;
   position: fixed;
   bottom: 0;
@@ -63,7 +58,6 @@ footer {
     height: 100%;
     width: 33.3%;
     text-align: center;
-    border: 1px solid white;
     border: 1px solid #f9d506;
     color: #f9d506;
     line-height: 60px;
