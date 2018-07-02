@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="logo" :src="'/images/logo.png'">
+    <img class="logo" src="/images/logo.png">
     <b-form @submit.prevent="login">
       <b-form-group label="メールアドレス"
                     label-for="username">
