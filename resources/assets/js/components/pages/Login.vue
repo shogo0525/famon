@@ -1,6 +1,9 @@
 <template>
   <div>
-    <img class="logo" src="/images/logo.png">
+    <div class="header-logo">
+      <img class="logo" src="/images/logo.png">
+      <h1>夫婦のための家計簿アプリ</h1>
+    </div>
     <b-form @submit.prevent="login">
       <b-form-group label="メールアドレス"
                     label-for="username">
@@ -52,10 +55,17 @@ export default {
 }
 </script>
 
-<style>
-.logo {
-  width: 60%;
+<style lang="scss">
+.header-logo {
   margin-bottom: 50px;
+  .logo {
+    width: 60%;
+  }
+  h1 {
+    color: #f9d506;
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
 }
 form {
   margin: 20px 0;

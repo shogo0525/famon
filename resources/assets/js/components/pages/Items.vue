@@ -84,6 +84,6 @@ export default {
 	bottom: 60px;
 	left: calc(50% - 30px);
 	margin: 0 auto;
-	z-index: 99;
+	z-index: 1;
 }
 </style>

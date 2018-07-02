@@ -45,6 +45,7 @@ main {
   padding: 25px 0 70px;
 }
 footer {
+  z-index: 1;
   max-width: 800px;
   width: 100%;
   height: 60px;
