@@ -19,7 +19,7 @@
                       type="password"
                       name="password"
                       v-model="password"
-                      placeholder="password">
+                      placeholder="パスワード">
 
         </b-form-input>
       </b-form-group>
